@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'PostsController@index');
+Route::get('admin', 'PostsAdminController@index');
