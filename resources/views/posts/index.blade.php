@@ -8,6 +8,13 @@
 @foreach($posts as $post)
 <h2>{{ $post->title }}</h2>
 <p>{{ $post->content }}</p>
+   <strong>TAG:</strong>
+   <ul>
+       @foreach($post->tags as $tag)
+       <li>{{$tag->name}}</li>
+       @endforeach
+   </ul>
+   
     @foreach($post->comments as $comment)
     <h3>Commenti</h3>
     <strong>Nome:</strong> {{$comment->name}}<br />
