@@ -13,7 +13,7 @@
 
 Route::get('/', 'PostsController@index');
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
     Route::group(['prefix'=>'posts'], function(){
         
         Route::get('',['as'=>'admin.posts.index', 'uses'=>'PostsAdminController@index']);
@@ -24,4 +24,23 @@ Route::group(['prefix'=>'admin'], function(){
         Route::get('destroy/{id}',['as'=>'admin.posts.destroy', 'uses'=>'PostsAdminController@destroy']);
         
     });
+});
+
+Route::get('auth/', function(){
+    
+    $user = \App\User::find(1);
+    Auth::login($user);
+
+    if(Auth::check()){
+
+        return "oi";
+
+    }
+
+});
+
+Route::get('auth/logout', function(){
+    
+    Auth::logout();
+
 });
