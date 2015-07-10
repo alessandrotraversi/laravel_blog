@@ -26,23 +26,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
     });
 });
 
-Route::get('auth/', function(){
-    
-    $user = \App\User::find(1);
-    Auth::login($user);
 
-    if(Auth::attempt(['email'=>'ale@gmail.it', 'password'=>'123456'])){
-
-        return "oi";
-
-    }
-
-    return "tentativo fallito";
-    
-});
-
-Route::get('auth/logout', function(){
-    
-    Auth::logout();
-
-});
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
