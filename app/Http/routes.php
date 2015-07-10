@@ -31,12 +31,14 @@ Route::get('auth/', function(){
     $user = \App\User::find(1);
     Auth::login($user);
 
-    if(Auth::check()){
+    if(Auth::attempt(['email'=>'ale@gmail.it', 'password'=>'123456'])){
 
         return "oi";
 
     }
 
+    return "tentativo fallito";
+    
 });
 
 Route::get('auth/logout', function(){
