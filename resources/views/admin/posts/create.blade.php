@@ -5,6 +5,14 @@
 @section('content')
 <h1>Crea nuovo post</h1>
 
+@if($errors->any())
+     <ul class="alert">
+         @foreach($errors->all() as $error)
+             <li>{{$error}}</li>
+         @endforeach
+     </ul>
+ @endif
+
 {!! Form::open(['route'=>'admin.posts.store', 'method'=>'post']) !!}
 
     <div class="form-group">
